@@ -37,7 +37,7 @@ namespace esphome {
             max_current_(0),
             min_current_(0),
             stopstart_delay_(0),
-            debug_(false),
+            debug_(true), //edit org false
             passive_mode_(passive_mode)
         {
         }
@@ -288,6 +288,8 @@ namespace esphome {
             heartbeat.command = htons(PRIMARY_HEARTBEAT);
             heartbeat.src_twcid = twcid_;
             heartbeat.dst_twcid = secondary_twcid;
+
+            ESP_LOGI("DEBUG", "sizeof(P_HEARTBEAT_T) = %d", sizeof(P_HEARTBEAT_T));// edit debug
 
             if (current_changed_) {
                 uint16_t encodedMax = available_current_ * 100;
